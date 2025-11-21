@@ -68,8 +68,9 @@ def jobs_to_df(jobs):
     } for job in jobs])
 
 # ----------------------------------------------------
-# SIDEBAR BRANDING
+# SIDEBAR BRANDING & PRIVACY
 # ----------------------------------------------------
+# NOTE: use project/logo.png so Streamlit Cloud can locate it when app is run from repo root
 st.sidebar.image("logo.png", width=120)
 st.sidebar.markdown("### RemoteFeed Lite")
 st.sidebar.markdown("Your personalized remote job dashboard.")
@@ -77,6 +78,18 @@ st.sidebar.markdown(
     "<span style='color:gray;'>🔒 Your data is private and never shared.</span>",
     unsafe_allow_html=True
 )
+st.sidebar.markdown("---")
+
+# ----------------------------------------------------
+# SIDEBAR SUPPORT SECTION
+# ----------------------------------------------------
+st.sidebar.markdown("### 📬 Support")
+st.sidebar.markdown("""
+If you need help or have questions:
+
+**Email:**  
+📧 ay007bat@gmail.com
+""")
 st.sidebar.markdown("---")
 
 # ----------------------------------------------------
@@ -134,7 +147,7 @@ if multi.strip():
 st.title("🧭 Job Finder Dashboard")
 
 # ----------------------------------------------------
-# PREMIUM CTA SECTION (UPDATED)
+# PREMIUM CTA SECTION (India-only)
 # ----------------------------------------------------
 st.markdown("""
 ### 🔥 Want a Personalized Job Feed?
@@ -219,3 +232,57 @@ with c3:
         "jobs.json",
         "application/json"
     )
+
+# ----------------------------------------------------
+# SUPPORT / CONTACT SECTION (BOTTOM OF PAGE)
+# ----------------------------------------------------
+st.markdown("---")
+st.subheader("📬 Need Help? Contact Support")
+
+st.markdown("""
+If you have any questions about your subscription, premium feed,
+payment, or want to request a **refund**, feel free to reach out.
+
+**📧 Email:** ay007bat@gmail.com  
+I usually reply within **24 hours**.
+""")
+
+# ----------------------------------------------------
+# POLICIES (EXPANDERS: Refund / Terms / Privacy)
+# ----------------------------------------------------
+with st.expander("Refund Policy"):
+    st.markdown("""
+**Simple Refund Policy**
+
+- If you receive an empty (0 match) premium feed for your exact requested filters, you may request a full refund within **7 days** of the feed delivery.
+- If you are unsatisfied for any other reason, email **ay007bat@gmail.com** and we'll review your case — partial refunds or free extensions may be offered at our discretion.
+- To request a refund, provide: (a) your name/email, (b) payment screenshot, (c) brief reason. We'll respond within 48 hours.
+- Refunds are normally processed within 3–7 business days after approval.
+""")
+
+with st.expander("Terms of Service"):
+    st.markdown("""
+**Terms of Service (Summary)**
+
+- **Service**: RemoteFeed Lite provides curated job lists based on publicly posted remote job data sources.
+- **Subscription**: Monthly subscription (₹149/month) grants you personalized curated feeds. You must provide payment proof to activate.
+- **Content & Liability**: Jobs are collected from third-party sources. RemoteFeed Lite is not responsible for employer actions, job offers, or hiring decisions.
+- **Cancellation**: To cancel your subscription, email ay007bat@gmail.com. Cancellation will stop future curated deliveries.
+- **Changes**: RemoteFeed Lite may update features or pricing; active users will be notified.
+""")
+
+with st.expander("Privacy Policy"):
+    st.markdown("""
+**Privacy Policy (Short & Clear)**
+
+- **What we collect**: name, email, skills/preferences, country, and payment screenshot (only to validate subscription).
+- **Where data is stored**: user signup responses are stored in your Google Form / Google Sheet. No other external storage is used.
+- **How we use it**: solely to provide personalized job feeds and communicate with you regarding the service.
+- **Sharing**: we DO NOT sell or share personal information with third parties.
+- **Deletion**: you may request data deletion at any time by emailing ay007bat@gmail.com. We'll remove your data from the form/sheet and confirm deletion.
+- **Security**: We follow reasonable practices; data is stored on Google servers via Forms/Sheets.
+""")
+
+# ----------------------------------------------------
+# END
+# ----------------------------------------------------
