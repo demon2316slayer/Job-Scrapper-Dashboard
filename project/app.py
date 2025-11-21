@@ -16,10 +16,25 @@ from scrapper.filter import (
 # ----------------------------------------------------
 # PAGE CONFIG
 # ----------------------------------------------------
-st.set_page_config(page_title="Job Finder", layout="wide")
+st.set_page_config(page_title="RemoteFeed Lite", layout="wide")
 
 # ----------------------------------------------------
-# SESSION STATE (KEEP DATA PERSISTENT)
+# BRANDING HEADER
+# ----------------------------------------------------
+st.markdown("""
+<div style="text-align: center;">
+    <h1 style="color:#0066FF; margin-bottom:0;">RemoteFeed Lite</h1>
+    <p style="font-size:18px; margin-top:0;">
+        Fresh curated remote jobs for your skills.<br>
+        <span style="color:gray;">Your data stays private and is never shared.</span>
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("---")
+
+# ----------------------------------------------------
+# SESSION STATE
 # ----------------------------------------------------
 if "jobs" not in st.session_state:
     st.session_state["jobs"] = []
@@ -53,7 +68,19 @@ def jobs_to_df(jobs):
     } for job in jobs])
 
 # ----------------------------------------------------
-# SIDEBAR
+# SIDEBAR BRANDING
+# ----------------------------------------------------
+st.sidebar.image("logo.png", width=120)
+st.sidebar.markdown("### RemoteFeed Lite")
+st.sidebar.markdown("Your personalized remote job dashboard.")
+st.sidebar.markdown(
+    "<span style='color:gray;'>🔒 Your data is private and never shared.</span>",
+    unsafe_allow_html=True
+)
+st.sidebar.markdown("---")
+
+# ----------------------------------------------------
+# SIDEBAR CONTROLS
 # ----------------------------------------------------
 st.sidebar.header("📁 Data Loading")
 
@@ -74,7 +101,7 @@ salary_only = st.sidebar.checkbox("Salary Tagged Only")
 multi = st.sidebar.text_input("Multi-skill (comma separated)")
 
 # ----------------------------------------------------
-# FILTERING LOGIC
+# FILTERING
 # ----------------------------------------------------
 jobs = st.session_state["jobs"][:]
 filtered = jobs
@@ -102,10 +129,34 @@ if multi.strip():
     filtered = filter_multi_skill(filtered, skills)
 
 # ----------------------------------------------------
-# SEARCH BAR (TOP)
+# DASHBOARD TITLE
 # ----------------------------------------------------
 st.title("🧭 Job Finder Dashboard")
 
+# ----------------------------------------------------
+# PREMIUM CTA SECTION (UPDATED)
+# ----------------------------------------------------
+st.markdown("""
+### 🔥 Want a Personalized Job Feed?
+
+Get remote job listings curated exactly for **your skills**,  
+**your experience level**, and **your preferred roles**.
+
+💰 **Pricing (India Only):**  
+- 🇮🇳 **₹149 / month**
+
+👉 Pay using UPI: **7052647114@kotak811**  
+Upload the payment screenshot inside the signup form.
+
+🔒 **Your data stays private and never shared.**
+""")
+
+if st.button("Get Premium Feed"):
+    st.markdown("[👉 Click here to join the Premium Feed](https://forms.gle/eAtPYDcNfgKbQxAD7)")
+
+# ----------------------------------------------------
+# SEARCH BAR
+# ----------------------------------------------------
 search = st.text_input("Search (title / company / tags)")
 
 if search.strip():
@@ -135,7 +186,7 @@ st.subheader("📄 Table View")
 st.dataframe(df, use_container_width=True)
 
 # ----------------------------------------------------
-# SIMPLE CARD VIEW (MINIMAL NICE BOXES)
+# CARD VIEW
 # ----------------------------------------------------
 st.markdown("---")
 st.subheader("💼 Job Cards")
@@ -148,7 +199,7 @@ for job in filtered:
         st.markdown(f"[🌐 Apply Link]({job['url']})")
 
 # ----------------------------------------------------
-# DOWNLOADS
+# DOWNLOAD OPTIONS
 # ----------------------------------------------------
 st.markdown("---")
 st.subheader("📥 Download")
