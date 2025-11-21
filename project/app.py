@@ -71,7 +71,7 @@ def jobs_to_df(jobs):
 # SIDEBAR BRANDING & PRIVACY
 # ----------------------------------------------------
 # NOTE: use project/logo.png so Streamlit Cloud can locate it when app is run from repo root
-st.sidebar.image("logo.png", width=120)
+st.sidebar.image("project/logo.png", width=120)
 st.sidebar.markdown("### RemoteFeed Lite")
 st.sidebar.markdown("Your personalized remote job dashboard.")
 st.sidebar.markdown(
